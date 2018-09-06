@@ -14,7 +14,8 @@ return [
      |
      */
 
-    'enabled' => env('APP_DEBUG', false),
+//    'enabled' => env('APP_DEBUG', false),
+    'enabled' => env('DEBUGBAR_ENABLE', false), // 因为启用了 DEBUGBAR 扩展
     'except' => [
         //
     ],
