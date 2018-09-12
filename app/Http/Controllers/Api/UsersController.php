@@ -57,6 +57,11 @@ class UsersController extends Controller
         return $this->response->item($user, new UserTransformer());
     }
 
+    public function activedIndex(User $user)
+    {
+        return $this->response->collection($user->getActiveUsers(), new UserTransformer());
+    }
+
     public function me()
     {
         return $this->response->item($this->user(), new UserTransformer());
