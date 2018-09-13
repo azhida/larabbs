@@ -13,15 +13,14 @@ class AuthorizationsController extends Controller
     public function store(AuthorizationRequest $request)
     {
         $username = $request->username;
-
         filter_var($username, FILTER_VALIDATE_EMAIL) ?
             $credentials['email'] = $username :
             $credentials['phone'] = $username;
 
         $credentials['password'] = $request->password;
 
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
-            return $this->response->errorUnauthorized('用户名或密码错误');
+        if (!$token = \Auth::guard('api')->attempt($credentials)) {
+            return $this->response->errorUnauthorized(trans('auth.failed'));
         }
 
         return $this->respondWithToken($token)->setStatusCode(201);
